@@ -232,9 +232,32 @@ public class aplicacabanco extends Activity {
 	}
 
 	public void mostrarDados() {
-		// tvNome.setText(cursor.getString(columnIndex));
-		// tvEndereco.setText(cursor.getString(columnIndex));
-		// tvTelefone.setText(cursor.getString(columnIndex));
+		tvNome.setText(cursor.getString(cursor.getColumnIndex("nome")));
+		tvEndereco.setText(cursor.getString(cursor.getColumnIndex("endereco")));
+		tvTelefone.setText(cursor.getString(cursor.getColumnIndex("telefone")));
+	}
+
+	public void mostrarRegistroAnterior() {
+		try {
+			cursor.moveToPrevious();
+			mostrarDados();
+
+		} catch (Exception erro) {
+			mensagemExibir("Erro navegar banco",
+					"Não foi possivel ir para o primeiro registro" + erro.getMessage());
+		}
+	}
+
+	public void mostrarProximoRegistro() {
+		try {
+			cursor.moveToNext();
+			mostrarDados();
+
+		} catch (Exception erro) {
+			mensagemExibir("Erro navegar banco",
+					"Não foi possivel ir para o proximo registro" + erro.getMessage());
+		}
+
 	}
 
 }
