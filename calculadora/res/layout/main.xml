@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+ <TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="Digite o primeiro nº"
+    />
+   <EditText  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:id="@+id/numero1" 
+    android:numeric="decimal"
+    />  
+    <TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="Digite o segundo nº"
+    />
+    <EditText  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:id="@+id/numero2"
+    android:numeric="decimal" 
+    />
+     <TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="Resultado.:"
+    />  
+    <EditText  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:id="@+id/resultado" 
+    />
+    <LinearLayout 
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <Button  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:id="@+id/btSoma"
+    android:text="Somar"    
+    />
+    
+    <Button  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:id="@+id/btSubtrair"
+    android:text="Subtrair"    
+    />
+    
+     <Button  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:id="@+id/btDividir"
+    android:text="Dividir"    
+    />
+     
+     <Button  
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content"
+    android:id="@+id/btMultiplicar"
+    android:text="Multiplicar"    
+    />
+    
+   </LinearLayout>   
+</LinearLayout>

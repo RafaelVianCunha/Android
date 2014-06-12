@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/absoluteLayout1" android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="vertical">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Videoaulas Neri www.informaticon.com.br" android:id="@+id/TextView02"></TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="T E L A     D E     C A D A S T R O" android:id="@+id/TextView01"></TextView>
+    <TextView android:text="Nome.:" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <EditText android:id="@+id/nome" android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+    <TextView android:text="Endereço.:" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <EditText android:id="@+id/endereco" android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+    <TextView android:text="Telefone.:" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <EditText android:id="@+id/telefone" android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+    <Button android:text="Volta Menu Principal" android:id="@+id/btMenuPrincipal" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+    <Button android:text="Gravar" android:id="@+id/btGravar" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>    
+
+
+    <TextView android:text="Videoaulas Neri www.informaticon.com.br" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+	
+</LinearLayout>
+
+

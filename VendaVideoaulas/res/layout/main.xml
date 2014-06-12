@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Video aulas" />
+    
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Algoritimos R$ 99,00" 
+    	android:id="@+id/cbAlgoritimo" />
+    
+     <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Java R$ 129,00" 
+    	android:id="@+id/cbJava" />
+     
+     <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Delphi R$ 119,00" 
+    	android:id="@+id/cbDelphi" />
+     
+     <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="PHP R$ 109,00" 
+    	android:id="@+id/cbPHP" />
+     
+     <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Android R$ 99,00" 
+    	android:id="@+id/cbAndroid" />
+     
+     <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Finalizar a compra" 
+    	android:id="@+id/btFinalizar" />
+     
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Valor total da compra:" />
+     
+     <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"        
+        android:id="@+id/etValorTotal" />
+    
+</LinearLayout>
