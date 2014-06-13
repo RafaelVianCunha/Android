@@ -76,7 +76,7 @@ public class aplicacabanco extends Activity {
 		setContentView(R.layout.cadastro);
 		inicializacaoObjetos();
 		listeners();
-		// etNome.requestFocus();
+		etNome.requestFocus();
 
 	}
 
@@ -105,24 +105,44 @@ public class aplicacabanco extends Activity {
 		}
 	}
 
+	public void gravarRegistro() {
+		try {
+			String sql = "INSERT INTO pessoa(nome, endereco, telefone) values('"
+					+ etNome.getText().toString()
+					+ "','"
+					+ etEndereco.getText().toString()
+					+ "','"
+					+ etTelefone.getText().toString() + "')";
+
+			bancoDados.execSQL(sql);
+			mensagemExibir("Dados gravados", "Dados gravados com Sucesso");
+
+		} catch (Exception erro) {
+			mensagemExibir("Erro Banco",
+					"Erro ao gravar dados no banco" + erro.getMessage());
+		}
+	}
+
 	public void inicializacaoObjetos() {
 		try {
 			btCadastro = (Button) findViewById(R.id.btCadastro);
 			btConsulta = (Button) findViewById(R.id.btConsulta);
-
+		} catch (Exception erro) {
+		}
+		try {
 			// objetos da consulta
 			btVoltar = (Button) findViewById(R.id.btVoltar);
 			btProxReg = (Button) findViewById(R.id.btProxReg);
 			btRegAnt = (Button) findViewById(R.id.btRegAnt);
-
+		} catch (Exception erro) {
+		}
+		try {
 			// objetos do cadastro
 			btMenuPrincipal = (Button) findViewById(R.id.btMenuPrincipal);
 			btGravar = (Button) findViewById(R.id.btGravar);
-
 			etNome = (EditText) findViewById(R.id.nome);
 			etEndereco = (EditText) findViewById(R.id.endereco);
 			etTelefone = (EditText) findViewById(R.id.telefone);
-
 		} catch (Exception erro) {
 		}
 
@@ -136,10 +156,8 @@ public class aplicacabanco extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					chamaCadastro(); // chama a tela
-										// de
-										// cadastro
-										// ao clicar
+					chamaCadastro();
+					abreouCriaBanco();
 
 				}
 			});
@@ -148,10 +166,9 @@ public class aplicacabanco extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					chamaConsulta(); // chama a tela
-										// de
-										// consulta
-										// ao clicar
+					chamaConsulta();
+					abreouCriaBanco();
+
 				}
 			});
 
@@ -168,13 +185,17 @@ public class aplicacabanco extends Activity {
 				}
 			});
 			btGravar.setOnClickListener(new View.OnClickListener() {
-				// videoaulaneri@gmail.com
-				// www.informaticon.com.br NERIZON DA
-				// GAITA
 				@Override
 				public void onClick(View v) {
-					// gravarRegistro();
-					// chamaMenuPrincipal();
+					try {
+						gravarRegistro();
+						mensagemExibir("Sucesso", "Dados gravados com sucesso");
+						chamaMenuPrincipal();
+					} catch (Exception erro) {
+						mensagemExibir("Erro", "Erro ao gravar dados no banco"
+								+ erro.getMessage());
+					}
+
 				}
 
 			});
@@ -186,6 +207,7 @@ public class aplicacabanco extends Activity {
 
 				@Override
 				public void onClick(View v) {
+					cursor.close();
 					chamaMenuPrincipal();
 				}
 			});
@@ -194,7 +216,7 @@ public class aplicacabanco extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					// mostrarProximoRegistro();
+					mostrarProximoRegistro();
 
 				}
 
@@ -203,7 +225,7 @@ public class aplicacabanco extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					// mostrarRegistroAnterior();
+					mostrarRegistroAnterior();
 
 				}
 			});
@@ -243,8 +265,10 @@ public class aplicacabanco extends Activity {
 			mostrarDados();
 
 		} catch (Exception erro) {
-			mensagemExibir("Erro navegar banco",
-					"Não foi possivel ir para o primeiro registro" + erro.getMessage());
+			mensagemExibir(
+					"Erro navegar banco",
+					"Não foi possivel ir para o primeiro registro"
+							+ erro.getMessage());
 		}
 	}
 
@@ -254,8 +278,10 @@ public class aplicacabanco extends Activity {
 			mostrarDados();
 
 		} catch (Exception erro) {
-			mensagemExibir("Erro navegar banco",
-					"Não foi possivel ir para o proximo registro" + erro.getMessage());
+			mensagemExibir(
+					"Erro navegar banco",
+					"Não foi possivel ir para o proximo registro"
+							+ erro.getMessage());
 		}
 
 	}
