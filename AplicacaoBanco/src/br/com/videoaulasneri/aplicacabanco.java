@@ -38,7 +38,7 @@ public class aplicacabanco extends Activity {
 					+ "(id INTEGER PRIMARY KEY, nome TEXT, endereco TEXT,"
 					+ "telefone TEXT);";
 			bancoDados.execSQL(sql);
-			mensagemExibir("Banco", "Banco criado com sucesso");
+		//	mensagemExibir("Banco", "Banco criado com sucesso");
 
 		} catch (Exception erro) {
 			mensagemExibir("Erro",
@@ -130,6 +130,9 @@ public class aplicacabanco extends Activity {
 		}
 		try {
 			// objetos da consulta
+			tvNome = (TextView) findViewById(R.id.nome);
+			tvTelefone = (TextView) findViewById(R.id.telefone);
+			tvEndereco = (TextView) findViewById(R.id.endereco);
 			btVoltar = (Button) findViewById(R.id.btVoltar);
 			btProxReg = (Button) findViewById(R.id.btProxReg);
 			btRegAnt = (Button) findViewById(R.id.btRegAnt);
@@ -147,109 +150,87 @@ public class aplicacabanco extends Activity {
 
 	}
 
-	public void listeners()
-
-	{
-		try {
-			btCadastro.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					chamaCadastro();
-					abreouCriaBanco();
-
-				}
-			});
-
-			btConsulta.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					chamaConsulta();
-					abreouCriaBanco();
-
-				}
-			});
-
-		} catch (Exception erro) {
-		}
-
-		try {
-			btMenuPrincipal.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					chamaMenuPrincipal();
-
-				}
-			});
-			btGravar.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					try {
-						gravarRegistro();
-						mensagemExibir("Sucesso", "Dados gravados com sucesso");
-						chamaMenuPrincipal();
-					} catch (Exception erro) {
-						mensagemExibir("Erro", "Erro ao gravar dados no banco"
-								+ erro.getMessage());
+	public void listeners() {
+		try{
+				btCadastro.setOnClickListener(new 
+				     View.OnClickListener() {
+					public void onClick(View arg0) {
+							abreouCriaBanco();
+							chamaCadastro();
 					}
+				});
+				btConsulta.setOnClickListener(new 
+						View.OnClickListener() {
+					public void onClick(View arg0) {
+							abreouCriaBanco();
+							chamaConsulta();
+					}
+				});	
 
+			} catch (Exception e){}
+
+		try{
+			btGravar.setOnClickListener(new 
+			       View.OnClickListener() {
+				public void onClick(View arg0) {
+					try {
+						gravarRegistro();						
+						etEndereco.setText(null);
+						etTelefone.setText(null);
+						etNome.setText(null);
+						etNome.requestFocus();
+					} catch (Exception erro) {
+						mensagemExibir("Erro Banco", "Erro ao gravar dados no banco: "+erro.getMessage());
+					}
 				}
-
 			});
-		} catch (Exception erro) {
+			btMenuPrincipal.setOnClickListener(new 
+			      View.OnClickListener() {
+				public void onClick(View arg0) {
+					chamaMenuPrincipal();
+				}
+			});
+		} catch (Exception e){
 		}
 
-		try {
-			btVoltar.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
+		try{
+			btVoltar.setOnClickListener(new 
+			      View.OnClickListener(){
+				public void onClick(View arg0){
 					cursor.close();
 					chamaMenuPrincipal();
 				}
 			});
-
-			btProxReg.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					mostrarProximoRegistro();
-
-				}
-
-			});
-			btRegAnt.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
+		
+			btRegAnt.setOnClickListener(new 
+			     View.OnClickListener(){
+				public void onClick(View arg0){
 					mostrarRegistroAnterior();
-
 				}
 			});
-		} catch (Exception erro) {
+		
+			btProxReg.setOnClickListener(new View.OnClickListener(){
+				public void onClick(View arg0){
+					mostrarProximoRegistro();
+				}
+			});
+		} catch (Exception e){ }
+		
 		}
 
-	}
-
 	public void chamaConsulta() {
-		// if (contadorRegistros == 0)
-		// {
-		// mensagemExibir("Aviso do Neri",
-		// "Não possui registros gravdos");
-		// chamaMenuPrincipal();
-		// return;
-		// }
-		// posicao=1;
-		setContentView(R.layout.consulta);
-		inicializacaoObjetos();
-		listeners();
+		if (buscarDados()) // é igual a buscarDados() == true
+		{
+			setContentView(R.layout.consulta);
+			inicializacaoObjetos();
+			listeners();
+			mostrarDados();
 
-		// regAuxiliar = primeiroRegistro;
-
-		// mostrarDados();
-
+		} else {
+			mensagemExibir("Aviso", "Não possui registros gravdos");
+			chamaMenuPrincipal();
+			return;
+		}
 	}
 
 	public void mostrarDados() {
@@ -266,8 +247,7 @@ public class aplicacabanco extends Activity {
 		} catch (Exception erro) {
 			mensagemExibir(
 					"Erro navegar banco",
-					"Não foi possivel ir para o primeiro registro"
-							+ erro.getMessage());
+					"Você está no primeiro registro");
 		}
 	}
 
@@ -279,8 +259,7 @@ public class aplicacabanco extends Activity {
 		} catch (Exception erro) {
 			mensagemExibir(
 					"Erro navegar banco",
-					"Não foi possivel ir para o proximo registro"
-							+ erro.getMessage());
+					"Não tem mais registro");
 		}
 
 	}
