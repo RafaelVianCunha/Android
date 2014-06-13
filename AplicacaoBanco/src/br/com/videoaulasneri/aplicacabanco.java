@@ -32,8 +32,8 @@ public class aplicacabanco extends Activity {
 	public void abreouCriaBanco() {
 		try {
 			String nomeBanco = "bancoEstoque";
-			bancoDados = openOrCreateDatabase("bancoEstoque",
-					MODE_WORLD_READABLE, null);
+			bancoDados = openOrCreateDatabase(nomeBanco, MODE_WORLD_READABLE,
+					null);
 			String sql = "CREATE TABLE IF NOT EXISTS pessoas "
 					+ "(id INTEGER PRIMARY KEY, nome TEXT, endereco TEXT,"
 					+ "telefone TEXT);";
@@ -107,13 +107,12 @@ public class aplicacabanco extends Activity {
 
 	public void gravarRegistro() {
 		try {
-			String sql = "INSERT INTO pessoa(nome, endereco, telefone) values('"
+			String sql = "INSERT INTO pessoas (nome, endereco, telefone) values ('"
 					+ etNome.getText().toString()
 					+ "','"
 					+ etEndereco.getText().toString()
 					+ "','"
 					+ etTelefone.getText().toString() + "')";
-
 			bancoDados.execSQL(sql);
 			mensagemExibir("Dados gravados", "Dados gravados com Sucesso");
 
